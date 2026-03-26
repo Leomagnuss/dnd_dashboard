@@ -1,0 +1,159 @@
+# Разработка (с сервера)
+#cd ~/dnd_dashboard
+
+#pm2 stop dnd-dashboard
+
+#npm run dev -- --hostname 0.0.0.0
+
+###
+
+# Сборка и запуск прода
+#cd ~/dnd_dashboard
+
+#npm run build
+
+#pm2 restart dnd-dashboard
+
+###
+
+# Автодеплой с выгрузкой с гит !!! выгружает гит, надо убедиться что все с разработки попало в репозиторий
+
+#~/deploy.sh
+
+
+# Автодеплой включает в себя
+
+#cd ~/dnd_dashboard
+
+#git pull origin main
+
+#npm install
+
+#npm run build
+
+#pm2 restart dnd-dashboard
+
+###
+
+#Управление PM2
+
+# Посмотреть статус всех процессов
+#pm2 status
+
+# Посмотреть логи приложения
+#pm2 logs dnd-dashboard
+
+# Посмотреть последние 50 строк логов
+#pm2 logs dnd-dashboard --lines 50
+
+# Перезапустить приложение
+#pm2 restart dnd-dashboard
+
+# Остановить приложение
+#pm2 stop dnd-dashboard
+
+# Запустить приложение
+#pm2 start dnd-dashboard
+
+# Удалить приложение из PM2
+#pm2 delete dnd-dashboard
+
+# Сохранить текущий список процессов (для автозапуска)
+#pm2 save
+
+# Перезагрузить все процессы
+#pm2 reload all
+
+# Мониторинг ресурсов (CPU, RAM)
+#pm2 monit
+
+###
+
+#Работа с psql на сервере, имеет учетку с доступами > leomagnuss
+
+#psql -U leomagnuss -d npc_database
+
+# Посмотреть все базы
+#sudo -u postgres psql -c "\l"
+
+# Посмотреть все таблицы в базе
+#sudo -u postgres psql -d npc_database -c "\dt"
+
+# Сделать бэкап базы
+#pg_dump -U leomagnus npc_database > backup_$(date +%Y%m%d).sql
+
+# Восстановить базу из бэкапа
+#psql -U leomagnus npc_database < backup_20260327.sql
+
+# Перезапустить PostgreSQL
+#sudo systemctl restart postgresql
+
+# Проверить статус PostgreSQL
+#sudo systemctl status postgresql
+
+###
+
+# Управление NGINX
+
+# Перезапустить Nginx
+#sudo systemctl restart nginx
+
+# Перезагрузить конф. (без разрыва соединений)
+#sudo systemctl reload nginx
+
+# Проверить конф. на ошибки
+#sudo nginx -t
+
+# Проверить статус Nginx
+#sudo systemctl status nginx
+
+# Посмотреть логи ошибок
+#sudo tail -f /var/log/nginx/error.log
+
+# Посмотреть логи доступа
+#sudo tail -f /var/log/nginx/access.log
+
+# Остановить Nginx
+#sudo systemctl stop nginx
+
+# Запустить Nginx
+#sudo systemctl start nginx
+
+###
+
+# Диагностика и отладка
+
+# Какие процессы слушают порты
+#sudo netstat -plnt | grep -E '3000|5432|80'
+
+# Или (если нет netstat)
+#sudo ss -plnt | grep -E '3000|5432|80'
+
+# Посмотреть переменные окружения
+#cat ~/dnd_dashboard/.env
+
+# Проверить версию Node.js
+#node -v
+
+# Проверить версию npm
+#npm -v
+
+# Проверить версию Tailwind
+#npm list tailwindcss
+
+###
+
+# Очистка кеша
+ 
+#cd ~/dnd_dashboard
+
+# Очистить кэш Next.js
+#rm -rf .next
+
+# Очистить кэш npm
+#npm cache clean --force
+
+# Удалить node_modules и переустановить
+#rm -rf node_modules
+#npm install
+
