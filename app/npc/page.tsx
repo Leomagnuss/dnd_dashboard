@@ -15,15 +15,15 @@ export default async function NpcsPage() {
   })
 
   return (
-    <div className="container mx-auto p-10 font-[]">
+    <div className="container mx-auto p-10 font-[] bg-blue-100">
+      <CardHeader>
+          <CardTitle className="text-3xl font-Unbounded font-semibold pb-4">NPC Dashboard <span className='font-mono text-sm'>by Leomagnuss</span></CardTitle>
+      </CardHeader>
       <Card>
-        <CardHeader>
-          <CardTitle className="text-3xl font-Unbounded font-semibold">NPC Dashboard</CardTitle>
-        </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
-              <TableRow className='font-mono text-[18px] bg-amber-400 font-bold'>
+              <TableRow className='font-Jost text-[18px] font-bold'>
                 <TableHead>ID</TableHead>
                 <TableHead>Имя</TableHead>
                 <TableHead>Раса</TableHead>
@@ -32,10 +32,10 @@ export default async function NpcsPage() {
                 <TableHead>Пол</TableHead>
                 <TableHead>Город</TableHead>
                 <TableHead>Занятие</TableHead>
-                <TableHead>Статус</TableHead>
+                <TableHead className='text-center'>Статус</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className='font-Jost'>
+            <TableBody className='font-Unbounded'>
               {npcs.map((npc: any) => (
                 <TableRow key={npc.npc_id}>
                   <TableCell className="font-medium">{npc.npc_id}</TableCell>
@@ -55,11 +55,11 @@ export default async function NpcsPage() {
                   <TableCell>{npc.gender || 'Не известен'}</TableCell>
                   <TableCell>{npc.towns || 'Не известен'}</TableCell>
                   <TableCell>{npc.occupation || 'Не известен'}</TableCell>
-                  <TableCell>
+                  <TableCell className='text-center'>
                     {npc.isalive ? (
-                      <span className="text-green-600 font-semibold">Жив</span>
+                      <span className="text-green-600 font-semibold bg-green-100 px-2 py-1 rounded-full">Жив</span>
                     ) : (
-                      <span className="text-red-600 font-semibold">Мёртв</span>
+                      <span className="text-red-600 font-semibold bg-red-100 px-2 py-1 rounded-full">Мёртв</span>
                     )}
                   </TableCell>
                 </TableRow>
