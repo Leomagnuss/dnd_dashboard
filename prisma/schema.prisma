@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model backgroundtab {
+  background_id   Int    @id @default(autoincrement())
+  background_name String @db.VarChar(500)
+  npc             npc[]
+}
+
+model classtab {
+  class_id   Int    @id @default(autoincrement())
+  class_name String @db.VarChar(500)
+  npc        npc[]
+}
+
+model npc {
+  npc_id            Int                @id @default(autoincrement())
+  name              String?            @unique @db.VarChar(500)
+  race              Int?
+  gender            String?            @db.VarChar(500)
+  age_count         Int?
+  class             Int?
+  worldview         Int?
+  wealth            String?            @db.VarChar(500)
+  occupation        String?            @db.VarChar(500)
+  towns             String?            @db.VarChar(500)
+  staterelations    Int?
+  sociability       Int?
+  background        Int?               @default(2)
+  isalive           Boolean            @default(true)
+  seeplayers        Boolean            @default(false)
+  backgroundtab     backgroundtab?     @relation(fields: [background], references: [background_id], onDelete: NoAction, onUpdate: NoAction)
+  classtab          classtab?          @relation(fields: [class], references: [class_id], onDelete: NoAction, onUpdate: NoAction)
+  racetab           racetab?           @relation(fields: [race], references: [race_id], onDelete: NoAction, onUpdate: NoAction)
+  sociabilitytab    sociabilitytab?    @relation(fields: [sociability], references: [sociability_id], onDelete: NoAction, onUpdate: NoAction)
+  staterelationstab staterelationstab? @relation(fields: [staterelations], references: [staterelations_id], onDelete: NoAction, onUpdate: NoAction)
+  worldviewtab      worldviewtab?      @relation(fields: [worldview], references: [worldview_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model racetab {
+  race_id   Int    @id @default(autoincrement())
+  race_name String @db.VarChar(500)
+  npc       npc[]
+}
+
+model sociabilitytab {
+  sociability_id   Int    @id @default(autoincrement())
+  sociability_name String @db.VarChar(500)
+  npc              npc[]
+}
+
+model staterelationstab {
+  staterelations_id   Int    @id @default(autoincrement())
+  staterelations_name String @db.VarChar(500)
+  npc                 npc[]
+}
+
+model worldviewtab {
+  worldview_id   Int    @id(map: "worldvewtab_pkey") @default(autoincrement())
+  worldview_name String @db.VarChar(500)
+  npc            npc[]
+}
