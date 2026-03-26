@@ -23,7 +23,7 @@ export default async function NpcsPage() {
         <CardContent>
           <Table>
             <TableHeader>
-              <TableRow className='font-mono text-[18px] font-bold'>
+              <TableRow className='font-mono text-[18px] bg-amber-400 font-bold'>
                 <TableHead>ID</TableHead>
                 <TableHead>Имя</TableHead>
                 <TableHead>Раса</TableHead>
