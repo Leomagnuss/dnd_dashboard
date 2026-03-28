@@ -15,47 +15,53 @@ export default async function NpcsPage() {
   })
 
   return (
-    <div className="container mx-auto p-10 font-[] bg-blue-100">
-      <CardHeader>
-          <CardTitle className="text-3xl font-Unbounded font-semibold pb-4">NPC Dashboard <span className='font-mono text-sm'>by Leomagnuss</span></CardTitle>
-      </CardHeader>
+    <div className="container mx-auto p-2 md:p-4 ">
+      <div className="mb-2 md:mb-4 text-left">
+          <CardTitle>
+            <p className='text-2xl md:text-3xl font-Unbounded font-bold'>NPC Dashboard</p>
+            <p className="font-mono text-xs md:text-sm text-muted-foreground">by Leomagnuss</p>
+          </CardTitle>
+          <p className="text-left text-xs text-muted-foreground font-mono mt-2 md:mt-4">
+          Записей: {npcs.length}
+        </p>
+        </div>
       <Card>
         <CardContent>
           <Table>
             <TableHeader>
-              <TableRow className='font-Jost text-[18px] font-bold'>
+              <TableRow className='font-Jost font-bold'>
                 <TableHead>ID</TableHead>
                 <TableHead>Имя</TableHead>
                 <TableHead>Раса</TableHead>
                 <TableHead>Класс</TableHead>
                 <TableHead>Возраст</TableHead>
                 <TableHead>Пол</TableHead>
-                <TableHead>Город</TableHead>
-                <TableHead>Занятие</TableHead>
-                <TableHead className='text-center'>Статус</TableHead>
+                <TableHead className='hidden md:table-cell'>Город</TableHead>
+                <TableHead className='hidden md:table-cell'>Занятие</TableHead>
+                <TableHead className='hidden md:table-cell text-center'>Статус</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className='font-Unbounded'>
               {npcs.map((npc: any) => (
-                <TableRow key={npc.npc_id}>
+                <TableRow className='text-[9px] md:text-[16px]' key={npc.npc_id}>
                   <TableCell className="font-medium">{npc.npc_id}</TableCell>
-                  <TableCell>{npc.name || 'Не известен'}</TableCell>
+                  <TableCell className="font-semibold">{npc.name || 'Не известен'}</TableCell>
 
                   <TableCell>
-                    <span className='text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full'>
+                    <span className='bg-blue-100 text-blue-800 px-2 py-1 rounded-full'>
                       {npc.racetab?.race_name || 'Не известен'}
                     </span>
                   </TableCell>
                   <TableCell>
-                    <span className="text-xs bg-green-100 px-2 py-1 rounded">
+                    <span className="bg-green-100 px-2 py-1 rounded">
                       {npc.classtab?.class_name || 'Не известен'}
                     </span>
                   </TableCell>
-                  <TableCell>{npc.age_count || 'Не известен'}</TableCell>
+                  <TableCell>{npc.age_count ?? 'Не известен'}</TableCell>
                   <TableCell>{npc.gender || 'Не известен'}</TableCell>
-                  <TableCell>{npc.towns || 'Не известен'}</TableCell>
-                  <TableCell>{npc.occupation || 'Не известен'}</TableCell>
-                  <TableCell className='text-center'>
+                  <TableCell className='hidden md:table-cell'>{npc.towns || 'Не известен'}</TableCell>
+                  <TableCell className='hidden md:table-cell'>{npc.occupation || 'Не известен'}</TableCell>
+                  <TableCell className='hidden md:table-cell text-center'>
                     {npc.isalive ? (
                       <span className="text-green-600 font-semibold bg-green-100 px-2 py-1 rounded-full">Жив</span>
                     ) : (
