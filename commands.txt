@@ -71,7 +71,11 @@
 
 #Работа с psql на сервере, имеет учетку с доступами > leomagnuss
 
-#psql -U leomagnuss -d npc_database
+#sudo -u postgres psql -d npc_database
+
+#Добавление позиции в бд, на месте звезд - добавление теста соответствующего столбцу данных о npc
+#insert into npc (name, race, gender, age_count, class, wealth, occupation, towns, staterelations, sociability, isalive, seeplaye
+rs) values ('*', 1, '*', 1, 1, '*', '*', '*', 1, 1, true, false);
 
 # Посмотреть все базы
 #sudo -u postgres psql -c "\l"
